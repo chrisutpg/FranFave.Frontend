@@ -1,6 +1,8 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
+var api_url = 'http://franfave-191811.appspot.com'; // Could Change Depending On Where Its Hosted
+
 var myApp = angular.module('myApp', [
   'ngRoute',
   'myApp.view1',
