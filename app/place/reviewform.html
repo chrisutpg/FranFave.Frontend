@@ -1,0 +1,209 @@
+<!-- Start Leave Review Form -->
+<div class="row" ng-controller="ReviewForm">
+    <h2>Overall Rating: {{ (form.cat1 + form.cat2 + form.cat3 + form.cat4 + form.cat5) / 5|number }}</h2>
+    {{ $parent.$parent.gid[0]['id'] }}
+    {{ place_id }}
+    <form ng-submit="submitForm()">
+        <input type="radio" style="display: none" name="id" ng-model="form.place_id" ng-value="$parent.$parent.gid[0]['id']" checked>
+        <!-- Question One -->
+        <h3 style="text-align: center; padding: 5px">Overall How Similar Was This Location To Others?</h3>
+        <div class="col-md-2 col-md-offset-1">
+            <input class="input-radio" type="radio" id="control_01" name="cat1" ng-model="form.cat1" ng-value="1">
+            <label class="label-radio" for="control_01">
+                <h4>Very<br />Different!</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="control_02" name="cat1" ng-model="form.cat1" ng-value="2">
+            <label class="label-radio" for="control_02">
+                <h4>Somewhat<br />Different</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="control_03" name="cat1" ng-model="form.cat1" ng-value="3">
+            <label class="label-radio" for="control_03">
+                <h4>About The<br />Same..</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="control_04" name="cat1" ng-model="form.cat1" ng-value="4">
+            <label class="label-radio" for="control_04">
+                <h4>Pretty<br />Similar</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3, 4]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="control_05" name="cat1" ng-model="form.cat1" ng-value="5">
+            <label class="label-radio" for="control_05">
+                <h4>Very<br />Similar!</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3, 4, 5]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <!-- /Question One -->
+
+
+        <!-- Question Two -->
+        <div class="col-md-12"><h3 style="text-align: center; padding: 5px">How Likely Are You To Revisit This Location?</h3></div>
+        <div class="col-md-2 col-md-offset-1">
+            <input class="input-radio" type="radio" id="cat2_control_01" name="cat2" ng-model="form.cat2" ng-value="1">
+            <label class="label-radio" for="cat2_control_01">
+                <h4>Absolutely<br />Not!</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat2_control_02" name="cat2" ng-model="form.cat2" ng-value="2">
+            <label class="label-radio" for="cat2_control_02">
+                <h4>Not<br />Likely</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat2_control_03" name="cat2" ng-model="form.cat2" ng-value="3">
+            <label class="label-radio" for="cat2_control_03">
+                <h4>Not Really<br />Sure..</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat2_control_04" name="cat2" ng-model="form.cat2" ng-value="4">
+            <label class="label-radio" for="cat2_control_04">
+                <h4>Somewhat<br />Likely</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3, 4]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat2_control_05" name="cat2" ng-model="form.cat2" ng-value="5">
+            <label class="label-radio" for="cat2_control_05">
+                <h4>Very<br />Likely!</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3, 4, 5]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <!-- /Question Two -->
+
+        <!-- Question Three -->
+        <div class="col-md-12"><h3 style="text-align: center; padding: 5px">Did Items Taste The Same As You Expected?</h3></div>
+        <div class="col-md-2 col-md-offset-1">
+            <input class="input-radio" type="radio" id="cat3_control_01" name="cat3" ng-model="form.cat3" ng-value="1">
+            <label class="label-radio" for="cat3_control_01">
+                <h4>Absolutely<br />Not!</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat3_control_02" name="cat3" ng-model="form.cat3" ng-value="2">
+            <label class="label-radio" for="cat3_control_02">
+                <h4>Not<br />Really</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat3_control_03" name="cat3" ng-model="form.cat3" ng-value="3">
+            <label class="label-radio" for="cat3_control_03">
+                <h4>About The<br />Same..</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat3_control_04" name="cat3" ng-model="form.cat3" ng-value="4">
+            <label class="label-radio" for="cat3_control_04">
+                <h4>Close To<br />Expected</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3, 4]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat3_control_05" name="cat3" ng-model="form.cat3" ng-value="5">
+            <label class="label-radio" for="cat3_control_05">
+                <h4>Exactly As<br />Expected!</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3, 4, 5]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <!-- /Question Three -->
+
+        <!-- Question Four -->
+        <div class="col-md-12"><h3 style="text-align: center; padding: 5px">Were The Things You Ordered Available?</h3></div>
+        <div class="col-md-2 col-md-offset-1">
+            <input class="input-radio" type="radio" id="cat4_control_01" name="cat4" ng-model="form.cat4" ng-value="1">
+            <label class="label-radio" for="cat4_control_01">
+                <h4>A Lot<br />Were Out!</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat4_control_02" name="cat4" ng-model="form.cat4" ng-value="2">
+            <label class="label-radio" for="cat4_control_02">
+                <h4>A Few<br />Were Out</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat4_control_03" name="cat4" ng-model="form.cat4" ng-value="3">
+            <label class="label-radio" for="cat4_control_03">
+                <h4>I'm Not<br />Sure..</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat4_control_04" name="cat4" ng-model="form.cat4" ng-value="4">
+            <label class="label-radio" for="cat4_control_04">
+                <h4>Pretty<br />Much</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3, 4]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat4_control_05" name="cat4" ng-model="form.cat4" ng-value="5">
+            <label class="label-radio" for="cat4_control_05">
+                <h4>Everything<br />Was!</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3, 4, 5]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <!-- /Question Four -->
+
+
+        <!-- Question Five -->
+        <div class="col-md-12"><h3 style="text-align: center; padding: 5px">Compared To Other Locations, How Were The Prices?</h3></div>
+        <div class="col-md-2 col-md-offset-1">
+            <input class="input-radio" type="radio" id="cat5_control_01" name="cat5" ng-model="form.cat5" ng-value="1">
+            <label class="label-radio" for="cat5_control_01">
+                <h4>Much<br />Higher!</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat5_control_02" name="cat5" ng-model="form.cat5" ng-value="2">
+            <label class="label-radio" for="cat5_control_02">
+                <h4>A Bit<br />Higher</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat5_control_03" name="cat5" ng-model="form.cat5" ng-value="3">
+            <label class="label-radio" for="cat5_control_03">
+                <h4>About The<br />Same..</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat5_control_04" name="cat5" ng-model="form.cat5" ng-value="4">
+            <label class="label-radio" for="cat5_control_04">
+                <h4>A Bit<br />Lower</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3, 4]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <div class="col-md-2">
+            <input class="input-radio" type="radio" id="cat5_control_05" name="cat5" ng-model="form.cat5" ng-value="5">
+            <label class="label-radio" for="cat5_control_05">
+                <h4>Much<br />Lower!</h4>
+                <p style="margin-top: -10px; color: purple"><i ng-repeat="i in [1, 2, 3, 4, 5]" class="fa fa-star"></i></p>
+            </label>
+        </div>
+        <!-- /Question Five -->
+
+        <!-- Submit Button -->
+        <button ng-click="Submit" class="btn btn-primary btn-lg" style="margin-left: 20px">Leave Review!</button>
+
+    </form>
+</div>

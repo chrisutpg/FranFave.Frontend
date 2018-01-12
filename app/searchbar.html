@@ -1,0 +1,30 @@
+
+    <div class="container fixed-top">
+        <div class="col-md-12 fixed-top" style="background-color: white">
+            <div class="header-form" style="border: 2px solid purple; margin: 1%;">
+                <div class="row">
+                    <form ng-controller="GetQuery" ng-submit="submitForm()">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Starbucks, McDonalds, etc..</label>
+                                <input ng-model="form.keyword" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">City, State or Zip..</label>
+                                <input ng-model="form.location" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" ng-click="Submit" href="#!view1" class="btn btn-primary btn-lg"><i class="fa fa-search"></i> Lets Go!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden-lg hidden-md" style="margin-bottom: 28%"></div>
+    <div class="hidden-lg hidden-md hidden-sm" style="margin-bottom: 50%"></div>
+    <div class="visible-xs" style="margin-bottom: 65%"></div>

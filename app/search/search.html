@@ -1,0 +1,108 @@
+
+<!-- Start Display Search -->
+<div class="hidden-md hidden-lg" style="margin-bottom: 15%"> Test</div>
+<div class="container">
+    <div ng-controller="DisplayQuery">
+        <div class="row col-md-12">
+            <div class="search-box" ng-repeat="val in search[0]">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div STYLE="float: left">
+                            <h5 style="text-align: left">
+                            <i class="fa fa-info"></i> {{ val['name'] }}<br />
+                            <i class="fa fa-map-marker"></i> {{ val['address'] }}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>FranFave Rating</h3>
+                        <h3>4.5</h3>
+                        <h3><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></h3>
+                        <div ng-controller="Gid"><button ng-click="getGid(val['id'])" class="btn btn-primary btn-lg">Get Details & Leave Reviews!</button></div>
+                    </div>
+                    <div class="col-md-4">
+
+
+                        (FranFave, Google, Yelp)
+                        <h4>Average Rating - {{ val['avg_rating'] }}</h4>
+
+                        <!-- Start Compute Google -->
+
+                        <div ng-if="val['avg_rating'] == null">
+                            <i class="fa fa-question"></i> Couldn't Find Rating
+                        </div>
+                        <div ng-if="val['avg_rating'] > 0 && val['avg_rating'] <= 1.49">
+                            <i ng-repeat="i in [1]" class="fa fa-star-o"></i>
+                        </div>
+                        <div ng-if="val['avg_rating'] >= 1.5 && val['avg_rating'] <= 2.49">
+                            <i ng-repeat="i in [1, 2]" class="fa fa-star-o"></i>
+                        </div>
+                        <div ng-if="val['avg_rating'] >= 2.5 && val['avg_rating'] <= 3.49">
+                            <i ng-repeat="i in [1, 2, 3]" class="fa fa-star-o"></i>
+                        </div>
+                        <div ng-if="val['avg_rating'] >= 3.5 && val['avg_rating'] <= 4.49">
+                            <i ng-repeat="i in [1, 2, 3, 4]" class="fa fa-star-o"></i>
+                        </div>
+                        <div ng-if="val['avg_rating'] > 4.49">
+                            <i ng-repeat="i in [1, 2, 3, 4, 5]" class="fa fa-star-o"></i>
+                        </div>
+
+                        <!-- End Compute Google -->
+
+                        <h4>Google Rating - {{ val['google_rating'] }}</h4>
+                        <!-- Start Compute Google -->
+
+                        <div ng-if="val['google_rating'] == null">
+                            <i class="fa fa-question"></i> Couldn't Find Rating
+                        </div>
+                        <div ng-if="val['google_rating'] > 0 && val['google_rating'] <= 1.49">
+                            <i ng-repeat="i in [1]" class="fa fa-star-o"></i>
+                        </div>
+                        <div ng-if="val['google_rating'] >= 1.5 && val['google_rating'] <= 2.49">
+                            <i ng-repeat="i in [1, 2]" class="fa fa-star-o"></i>
+                        </div>
+                        <div ng-if="val['google_rating'] >= 2.5 && val['google_rating'] <= 3.49">
+                            <i ng-repeat="i in [1, 2, 3]" class="fa fa-star-o"></i>
+                        </div>
+                        <div ng-if="val['google_rating'] >= 3.5 && val['google_rating'] <= 4.49">
+                            <i ng-repeat="i in [1, 2, 3, 4]" class="fa fa-star-o"></i>
+                        </div>
+                        <div ng-if="val['google_rating'] >= 4.49">
+                            <i ng-repeat="i in [1, 2, 3, 4, 5]" class="fa fa-star-o"></i>
+                        </div>
+
+                        <!-- End Compute Google -->
+
+                        <h4>Yelp Rating - {{ val['yelp_rating'] }}</h4>
+                        <!-- Start Yelp Compute -->
+
+                        <div ng-if="val['yelp_rating'] == null">
+                            <i class="fa fa-question"></i> Couldn't Find Rating
+                        </div>
+                        <div ng-if="val['yelp_rating'] > 0 && val['yelp_rating'] <= 1.49">
+                            <i ng-repeat="i in [1]" class="fa fa-star-o"></i>
+                        </div>
+                        <div ng-if="val['yelp_rating'] >= 1.5 && val['yelp_rating'] <= 2.49">
+                            <i ng-repeat="i in [1, 2]" class="fa fa-star-o"></i>
+                        </div>
+                        <div ng-if="val['yelp_rating'] >= 2.5 && val['yelp_rating'] <= 3.49">
+                            <i ng-repeat="i in [1, 2, 3]" class="fa fa-star-o"></i>
+                        </div>
+                        <div ng-if="val['yelp_rating'] >= 3.5 && val['yelp_rating'] <= 4.49">
+                            <i ng-repeat="i in [1, 2, 3, 4]" class="fa fa-star-o"></i>
+                        </div>
+                        <div ng-if="val['yelp_rating'] > 4.49">
+                            <i ng-repeat="i in [1, 2, 3, 4, 5]" class="fa fa-star-o"></i>
+                        </div>
+
+                        <!-- End Compute Yelp -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /End Display Search -->
+

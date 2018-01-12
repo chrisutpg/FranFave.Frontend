@@ -1,0 +1,48 @@
+
+<!-- Start Nav -->
+<div ng-controller="UserUpdate">
+<div ng-controller="IsAuth">
+<nav change-class-on-scroll offset="100" scroll-class="navbar-transparent" class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll" role="navigation">
+    <div class="container-fluid" style="z-index: 2">
+        <div class="navbar-header">
+            <button type="button"  class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo-1" href="#">Fran<h1 class="logo-2">Faves</h1></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#!view2">Write A Review</a></li>
+                <li><a href="" data-toggle="modal" data-target="#login" ng-hide="token[0] != null || user_info != null">Sign In</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#register" ng-hide="token[0] != null || user_info != null">Register</a></li>
+                <li class="dropdown" ng-show="token[0] != null || user_info != null">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">Welcome {{ user_info['first_name'] }}{{ token[0]['first_name'] }}<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">My Profile</a></li>
+                        <li><a href="#">My Reviews</a></li>
+                        <li class="divider"></li>
+                        <li><a href="" onclick="localStorage.clear();
+                                                sessionStorage.clear();
+                                                window.location.reload();">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</div>
+</div>
+<!-- End Nav -->
+
+<!-- Login Modal -->
+<div ng-include="'login.html'"></div>
+<!-- / Login Modal -->
+
+
+<!-- Register Modal -->
+<div ng-include="'register.html'"></div>
+<!-- / Register Modal -->
