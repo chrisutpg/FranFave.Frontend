@@ -10,6 +10,21 @@
                 <div class="row" ng-controller="FormRegisterCtrl" >
                     <div class="col-md-12">
 
+                        <!-- Show Success -->
+                        <div class="alert alert-success" ng-show="success">
+                            <div class="container-fluid">
+                                <div class="alert-icon">
+                                    <i class="material-icons">check</i>
+                                </div>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                                </button>
+                                <b>Success Alert:</b> {{ success }}
+                            </div>
+                        </div>
+                        <!-- End Success -->
+
+
                         <!-- Show Errors -->
                         <div class="alert alert-danger" ng-show="error">
                             <div class="container-fluid">

@@ -1,8 +1,8 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
-var api_url = 'http://franfave-191811.appspot.com'; // Could Change Depending On Where Its Hosted
+var api_url = 'http://10.0.0.113:5000'; // Could Change Depending On Where Its Hosted
 
+// Declare app level module which depends on views, and components
 var myApp = angular.module('myApp', [
   'ngRoute',
   'myApp.view1',
@@ -10,6 +10,7 @@ var myApp = angular.module('myApp', [
   'myApp.users',
   'myApp.search',
   'myApp.place',
+  'myApp.profile',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
@@ -29,7 +30,6 @@ myApp.directive('changeClassOnScroll', function ($window) {
             angular.element($window).bind("scroll", function() {
                 if (this.pageYOffset >= parseInt(scope.offset)) {
                     element.removeClass(scope.scrollClass);
-                    console.log('Scrolled below header.');
                 } else {
                     element.addClass(scope.scrollClass);
                 }
@@ -52,12 +52,10 @@ myApp.controller('headerHide', function($scope, $location){
             $scope.hide = false;
 
         }
-        console.log('Success')
 
     })
 
-})
-
+});
 
 myApp.directive('ifLoading', function($http){
 
@@ -67,8 +65,6 @@ myApp.directive('ifLoading', function($http){
             scope.isLoading = isLoading;
 
             scope.$watch(scope.isLoading, toggleElement);
-
-            console.log('Loading..');
 
             function toggleElement(loading) {
                 if (loading) {
@@ -84,4 +80,4 @@ myApp.directive('ifLoading', function($http){
         }
     };
 
-})
+});

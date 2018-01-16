@@ -33,17 +33,12 @@
   <div style="background-color: white">
 
     <!-- Menu & Header -->
+    <div ng-include="'loading.html'"></div>
     <div ng-include="'menu.html'"></div>
     <div ng-controller="headerHide" ng-hide="hide" ng-include="'header.html'"></div>
     <div ng-controller="headerHide" ng-show="hide" ng-include="'header_min.html'"></div>
-    <div ng-controller="headerHide" ng-show="hide" ng-include="'searchbar.html'" style="margin-bottom: 125px"></div>
+    <div ng-controller="headerHide" ng-show="hide" ng-include="'searchbar.html'"></div>
     <!-- /Menu & Header -->
-
-    <p class="text-center" if-loading>
-      <span style="color: purple" class="fa fa-spinner fa-spin fa-4x"></span>
-      <br /><br />
-      Loading, please wait...
-    </p>
 
     <!-- Main View -->
     <div ng-view></div>
@@ -58,6 +53,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
@@ -66,6 +62,7 @@
   <script src="login/users.js"></script>
   <script src="search/search.js"></script>
   <script src="place/place.js"></script>
+  <script src="profile/profile.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>

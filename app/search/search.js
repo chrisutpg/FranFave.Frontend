@@ -8,7 +8,6 @@ angular.module('myApp.search', ['ngRoute'])
 
     var addResult = function (newObj) {
         myResult.push(newObj);
-        console.log(myResult);
     }
 
     var getResult = function(){
@@ -16,7 +15,6 @@ angular.module('myApp.search', ['ngRoute'])
     }
     var clearResult = function(){
         myResult.length = 0;
-        console.log(myResult)
     }
     return{
         addResult: addResult,
@@ -26,7 +24,7 @@ angular.module('myApp.search', ['ngRoute'])
     }
 })    
 
-.controller('GetQuery', ['Results', '$scope', '$http', '$location', '$route', '$templateCache', function (Results, $scope, $http, $location, $route, $templateCache){
+.controller('GetQuery', ['Results', '$scope', '$http', '$location', '$route', '$templateCache', '$timeout', function (Results, $scope, $http, $location, $route, $templateCache, $timeout){
 
     $scope.search_results = 'Test';
     $scope.form = {
@@ -35,11 +33,14 @@ angular.module('myApp.search', ['ngRoute'])
     };
     $scope.submitForm = function () {
 
-        console.log('Test');
+        $timeout(function(){
+            var el = document.getElementById('closeSearch');
+            angular.element(el).trigger('click');
+        });
 
         $http({
 
-            url: "http://127.0.0.1:5000/places/search_places",
+            url: api_url + "/places/search_places",
             method: "POST",
             data: JSON.stringify($scope.form)
 
@@ -50,12 +51,11 @@ angular.module('myApp.search', ['ngRoute'])
             if($scope.clear.length > 0){
                 $templateCache.remove('/search');
                 Results.clearResult();
-                console.log('True')
 
             }
 
-            $scope.search_results = response.data.query;
-            Results.addResult($scope.search_results);
+            $scope.results = response.data.search_return;
+            Results.addResult($scope.results);
             $location.path('/search');
 
 
@@ -69,11 +69,41 @@ angular.module('myApp.search', ['ngRoute'])
 
     }
 
+
 }])
 
 .controller('DisplayQuery', ['Results', '$scope', function (Results, $scope) {
 
     $scope.search = Results.getResult();
+
+    $scope.starCtrl = function(num) {
+
+        if(num == 1 || num == 1.5){
+            return [1]
+        }
+        if(num == 2 || num == 2.5){
+            return [1, 2]
+        }
+        if(num == 3 || num == 3.5){
+            return [1, 2, 3]
+        }
+        if(num == 4 || num == 4.5){
+            return [1, 2, 3, 4]
+        }
+        if(num == 5){
+            return [1, 2, 3, 4, 5]
+        }
+
+    }
+
+    $scope.halfStar = function(num) {
+        if(Number.isInteger(Number(num))){
+            return true
+        }else{
+            return false
+        }
+
+    }
 
 }])
 
@@ -114,7 +144,7 @@ angular.module('myApp.search', ['ngRoute'])
 
         $http({
 
-            url: "http://127.0.0.1:5000/places/single_place",
+            url: api_url + "/places/single_place",
             method: "POST",
             data: {'id': id}
 
@@ -122,8 +152,6 @@ angular.module('myApp.search', ['ngRoute'])
 
             $scope.gid = response.data;
             Id.clearResult();
-            console.log($scope.gid);
-            console.log($scope.id);
             Id.addResult($scope.gid);
             $location.path('/singleplace')
 

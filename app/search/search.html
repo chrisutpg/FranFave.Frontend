@@ -1,6 +1,5 @@
 
 <!-- Start Display Search -->
-<div class="hidden-md hidden-lg" style="margin-bottom: 15%"> Test</div>
 <div class="container">
     <div ng-controller="DisplayQuery">
         <div class="row col-md-12">
@@ -16,17 +15,20 @@
                     </div>
                     <div class="col-md-4">
                         <h3>FranFave Rating</h3>
-                        <h3>4.5</h3>
-                        <h3><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></h3>
+                        <h3 ng-show="val['review_avg']">{{ val['review_avg'] }}</h3>
+                        <h3 ng-hide="val['review_avg']">Not Yet Rated!</h3>
+                        <h3><i style="color: purple" ng-repeat="x in starCtrl(val['review_avg'])" class="fa fa-star"></i><i style="color: purple" ng-hide="halfStar(val['review_avg'])" class="fa fa-star-half"></i></h3>
                         <div ng-controller="Gid"><button ng-click="getGid(val['id'])" class="btn btn-primary btn-lg">Get Details & Leave Reviews!</button></div>
                     </div>
+
+
                     <div class="col-md-4">
 
-
+                        <!-- Not Doing this for now.. ?
                         (FranFave, Google, Yelp)
                         <h4>Average Rating - {{ val['avg_rating'] }}</h4>
 
-                        <!-- Start Compute Google -->
+                        <!-- Start Compute Google --
 
                         <div ng-if="val['avg_rating'] == null">
                             <i class="fa fa-question"></i> Couldn't Find Rating
@@ -47,10 +49,10 @@
                             <i ng-repeat="i in [1, 2, 3, 4, 5]" class="fa fa-star-o"></i>
                         </div>
 
-                        <!-- End Compute Google -->
+                        <!-- End Compute Google --
 
                         <h4>Google Rating - {{ val['google_rating'] }}</h4>
-                        <!-- Start Compute Google -->
+                        <!-- Start Compute Google --
 
                         <div ng-if="val['google_rating'] == null">
                             <i class="fa fa-question"></i> Couldn't Find Rating
@@ -71,10 +73,10 @@
                             <i ng-repeat="i in [1, 2, 3, 4, 5]" class="fa fa-star-o"></i>
                         </div>
 
-                        <!-- End Compute Google -->
+                        <!-- End Compute Google --
 
                         <h4>Yelp Rating - {{ val['yelp_rating'] }}</h4>
-                        <!-- Start Yelp Compute -->
+                        <!-- Start Yelp Compute --
 
                         <div ng-if="val['yelp_rating'] == null">
                             <i class="fa fa-question"></i> Couldn't Find Rating
@@ -99,6 +101,7 @@
 
 
                     </div>
+
                 </div>
             </div>
         </div>

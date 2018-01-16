@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="review-box" ng-controller="ReviewOverview">
+            <h4 style="text-align: center">Based on our algorithm this franchise <span ng-class="dynamicClass">{{ overall(details[0]['review_avg']) }}</span> to your expectations.</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-2">
+        <div class="review-box" style="text-align: center;">
+            <h4>Overall Rating</h4>
+            <h4>{{ details[0]['review_avg'] }}</h4>
+            <h4>
+                <i ng-repeat="x in starCtrl(details[0]['review_avg'])"  style="color: purple" class="fa fa-star"></i><i ng-hide="halfStar(details[0]['review_avg'])" class="fa fa-star-half" style="color: purple"></i>
+            </h4>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="review-box" style="text-align: center;">
+            <h4>Similarities Rating</h4>
+            <h4>{{ details[0]['review_stats']['cat1_avg'] }}</h4>
+            <h4>
+                <i ng-repeat="x in starCtrl(details[0]['review_stats']['cat1_avg'])"  style="color: purple" class="fa fa-star"></i><i ng-hide="halfStar(details[0]['review_stats']['cat1_avg'])" class="fa fa-star-half" style="color: purple"></i>
+            </h4>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="review-box" style="text-align: center;">
+            <h4>Revisit Rating</h4>
+            <h4>{{ details[0]['review_stats']['cat2_avg'] }}</h4>
+            <h4>
+                <i ng-repeat="x in starCtrl(details[0]['review_stats']['cat2_avg'])"  style="color: purple" class="fa fa-star"></i><i ng-hide="halfStar(details[0]['review_stats']['cat2_avg'])" class="fa fa-star-half" style="color: purple"></i>
+            </h4>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="review-box" style="text-align: center;">
+            <h4>Expected Rating</h4>
+            <h4>{{ details[0]['review_stats']['cat3_avg'] }}</h4>
+            <h4>
+                <i ng-repeat="x in starCtrl(details[0]['review_stats']['cat3_avg'])"  style="color: purple" class="fa fa-star"></i><i ng-hide="halfStar(details[0]['review_stats']['cat3_avg'])" class="fa fa-star-half" style="color: purple"></i>
+            </h4>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="review-box" style="text-align: center">
+            <h4>Availability Rating</h4>
+            <h4>{{ details[0]['review_stats']['cat4_avg'] }}</h4>
+            <h4>
+                <i ng-repeat="x in starCtrl(details[0]['review_stats']['cat4_avg'])"  style="color: purple" class="fa fa-star"></i><i ng-hide="halfStar(details[0]['review_stats']['cat4_avg'])" class="fa fa-star-half" style="color: purple"></i>
+            </h4>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="review-box" style="text-align: center;">
+            <h4>Pricing Rating</h4>
+            <h4>{{ details[0]['review_stats']['cat5_avg'] }}</h4>
+            <h4>
+                <i ng-repeat="x in starCtrl(details[0]['review_stats']['cat5_avg'])"  style="color: purple" class="fa fa-star"></i><i ng-hide="halfStar(details[0]['review_stats']['cat5_avg'])" class="fa fa-star-half" style="color: purple"></i>
+            </h4>
+        </div>
+    </div>
+</div>

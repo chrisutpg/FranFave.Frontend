@@ -51,7 +51,7 @@ angular.module('myApp.users', [])
 
             $http({
 
-                url: "http://127.0.0.1:5000/auth/is_user",
+                url: api_url + "/auth/is_user",
                 method: 'POST',
                 headers: {'X-API-KEY': localStorage.token}
 
@@ -75,6 +75,7 @@ angular.module('myApp.users', [])
             } else {
 
                 $scope.error = response.data['Err'];
+                console.log($scope.error)
             }
         })
     };
@@ -91,7 +92,7 @@ angular.module('myApp.users', [])
 
         $http({
 
-            url: "http://127.0.0.1:5000/auth/is_user",
+            url: api_url + "/auth/is_user",
             method: 'POST',
             headers: {'X-API-KEY': localStorage.token}
 
@@ -111,6 +112,8 @@ angular.module('myApp.users', [])
 
 .controller('FormRegisterCtrl', ['Users', '$scope', '$http', function (Users, $scope, $http, $window) {
 
+    $scope.success = null;
+    $scope.error = null;
     $scope.form = {
         first_name: "",
         last_name: "",
@@ -121,7 +124,7 @@ angular.module('myApp.users', [])
 
         $http({
 
-            url: "http://127.0.0.1:5000/auth/create_user",
+            url: api_url + "/auth/create_user",
             method: "POST",
             data: JSON.stringify($scope.form)
 
@@ -148,7 +151,8 @@ angular.module('myApp.users', [])
                 }).then(function(response) {
 
                     $scope.user_info = response.data;
-                    Users.addResult($scope.user_info)
+                    Users.addResult($scope.user_info);
+                    $scope.success = 'Account Created and logged in!'
 
                 }).catch(function() {
 
