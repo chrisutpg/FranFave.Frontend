@@ -1,3 +1,37 @@
-<div ng-controller="PubInfoDisplay">
-    {{ info[0]['first_name'] }}
+<div class="container" ng-controller="PubInfoDisplay">
+    {{ info[0]['total_reviews'] }}
+    <div ng-repeat="val in info[0]['reviews']">
+        <div class="review-box">
+            <div class="row">
+                <div class="col-md-4">
+                    <h6><i style="color: purple" class="fa fa-info"></i> Place: <span style="font-weight: bold">{{ val['place_name'] }}</span></h6>
+                    <h6><i style="color: purple" class="fa fa-pie-chart"></i> Overall Score: <span style="font-weight: bold">{{ val['avg_score'] }}</span></h6>
+                </div>
+                <div class="col-md-4">
+                    <h6><i style="color: purple" class="fa fa-calendar-check-o"></i> Reviewed On: {{ val['review_date']}}</h6>
+                    <h6><i style="color: purple" class="fa fa-calendar"></i> Visited On: {{ val['visited_date']}}</h6>
+                </div>
+                <div class="col-md-4">
+                    <h6><i style="color: purple" class="fa fa-map-marker"></i> Address: {{ val['address'] }}</h6>
+                </div>
+            </div>
+            <hr class="style9">
+            <div class="row">
+                <div class="col-md-12" ng-controller="ReviewDetails">
+                    <li>{{ info[0]['name'] }} said this location was <span ng-class="dynamicClass">{{ q1(val['cat1_score']) }}</span> to others they visited.</li>
+                    <li>{{ info[0]['name'] }} said they were <span ng-class="dynamicClass">{{ q2(val['cat2_score']) }}</span><span ng-show="val['cat2_score'] == 3"> they would</span><span ng-hide="val['cat2_score'] == 3"> to</span> visit this location again.</li>
+                    <li>{{ info[0]['name'] }} said everything tasted <span ng-class="dynamicClass">{{ q3(val['cat3_score']) }}</span> compared to what they expected.</li>
+                    <li>{{ info[0]['name'] }} said of the things they ordered<span ng-show="val['cat4_score'] == 3"> they</span> <span ng-class="dynamicClass">{{ q4(val['cat4_score']) }}</span><span ng-show="val['cat4_score'] == 2">were unavailable.</span>
+                        <span ng-show="val['cat4_score'] == 3">what </span><span ng-hide="val['cat4_score'] == 2">was available.</span></li>
+                    <li>{{ info[0]['name'] }} said the prices were <span ng-class="dynamicClass">{{ q5(val['cat5_score']) }} </span><span ng-show="val['cat5_score'] == 3">as</span><span ng-hide="val['cat5_score'] == 3">than</span> expected.</li>
+                </div>
+            </div>
+            <hr class="style9">
+            <div class="row">
+                <div class="col-md-12">
+                    Comments: {{ val['comments'] }}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

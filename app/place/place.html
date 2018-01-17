@@ -10,7 +10,7 @@
                 <li ng-class="{active : activeMenu === 'Overview'}"><a href="" ng-click="activeMenu = 'Home'; showDiv(1)">Overview</a></li>
                 <li ng-class="{active : activeMenu === 'Review Details'}"><a href="" ng-click="activeMenu = 'Review Details'; showDiv(2)">Review Details</a></li>
                 <li ng-class="{active : activeMenu === 'Leave Review'}"><a href="" ng-click="activeMenu = 'Leave Review'; showDiv(3)">Leave Review</a></li>
-                <li ng-class="{active : activeMenu === 'My Places'}"><a href="" ng-click="activeMenu = 'My Places'">Add To My Places</a></li>
+                <li ng-class="{active : activeMenu === 'My Places'}"><a href="" ng-click="activeMenu = 'My Places'; showDiv(4)">Add To My Places</a></li>
             </ul><br>
         </div>
         <div class="col-sm-9">
@@ -25,6 +25,9 @@
             </div>
             <div ng-show="show == 2">
                 <div ng-include="'place/reviewdetails.html'"></div>
+            </div>
+            <div ng-show="show == 4">
+                <div ng-include="'place/addtoplaces.html'"></div>
             </div>
         </div>
     </div>

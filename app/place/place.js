@@ -84,13 +84,14 @@ angular.module('myApp.place', ['ngRoute'])
 
         }).then(function(response){
 
+            $scope.place_id = response.data.place_id;
             $scope.error = false;
 
             $http({
 
                 url: api_url + "/places/single_place",
                 method: "POST",
-                data: {'id': $scope.form.id}
+                data: {'id': $scope.place_id}
 
             }).then(function(response) {
 
