@@ -1,0 +1,27 @@
+<div ng-controller="privateProfile" ng-init="get_profile()">
+
+    <div class="container-fluid">
+        <div class="row content" ng-controller="privateProfileMenu">
+            <div class="col-sm-3 sidenav">
+                <h2>Welcome, {{ profile['first_name'] }}</h2>
+                <ul class="nav nav-pills nav-stacked">
+                    <li ng-class="{active : activeMenu === 'Overview'}"><a href="" ng-click="activeMenu = 'Overview'; showDiv(1)">Overview</a></li>
+                    <li ng-class="{active : activeMenu === 'My Places'}"><a href="" ng-click="activeMenu = 'My Places'; showDiv(2)">My Places</a></li>
+                    <li ng-class="{active : activeMenu === 'My Reviews'}"><a href="" ng-click="activeMenu = 'My Reviews'; showDiv(3)">My Reviews</a></li>
+                </ul><br>
+            </div>
+            <div class="col-sm-9">
+                <div class="row" ng-show="show == 1">
+                    <div ng-include="'profile/privateoverview.html'"></div>
+                </div>
+                <div ng-show="show == 2">
+                    <div ng-include="'profile/myplaces.html'"></div>
+                </div>
+                <div ng-show="show == 3">
+                    <div ng-include="'profile/myreviews.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

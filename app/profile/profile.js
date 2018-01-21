@@ -6,6 +6,9 @@ angular.module('myApp.profile', [])
     $routeProvider.when('/publicprofile', {
         templateUrl: 'profile/publicprofile.html'
     });
+    $routeProvider.when('/privateprofile', {
+        templateUrl: 'profile/privateprofile.html'
+    });
 }])
 
 .service('PubInfo', function(){
@@ -60,3 +63,48 @@ angular.module('myApp.profile', [])
     }
 
 }])
+
+.controller('privateProfile', ['$scope', '$http', '$location', function($scope, $http, $location){
+
+    $scope.get_profile = function() {
+
+        $http({
+
+            url: api_url + "/profiles/private_profile",
+            headers: {'X-API-KEY': localStorage.token},
+            method: 'GET'
+
+        }).then(function(response){
+
+            $scope.profile = response.data
+
+        }).catch(function(response){
+
+            $location.path('/view1')
+
+        })
+
+    }
+
+}])
+
+.controller('privateProfileMenu', function($scope, $location, $anchorScroll) {
+
+    $scope.activeMenu = 'Overview';
+    $scope.show = 1;
+
+    $scope.scrollTo = function (id) {
+        var old = $location.hash();
+        $location.hash(id);
+        $anchorScroll();
+        //reset to old to keep any additional routing logic from kicking in
+        $location.hash(old);
+    };
+
+    $scope.showDiv = function(id) {
+
+        $scope.show = id;
+
+    }
+
+})

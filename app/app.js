@@ -38,7 +38,7 @@ myApp.directive('changeClassOnScroll', function ($window) {
     };
 });
 
-myApp.controller('headerHide', function($scope, $location){
+myApp.controller('headerHide', function($scope, $location, $window){
 
     $scope.$on("$routeChangeSuccess", function () {
 
@@ -57,7 +57,7 @@ myApp.controller('headerHide', function($scope, $location){
 
 });
 
-myApp.directive('ifLoading', function($http){
+myApp.directive('ifLoading', function($http, $window){
 
     return {
         restrict: 'A',
@@ -69,6 +69,7 @@ myApp.directive('ifLoading', function($http){
             function toggleElement(loading) {
                 if (loading) {
                     elem.show();
+                    $window.scrollTo(0,0)
                 } else {
                     elem.hide();
                 }

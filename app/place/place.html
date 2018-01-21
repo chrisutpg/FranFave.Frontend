@@ -5,9 +5,8 @@
             <h4 ng-show="details[0]['total_reviews']">Total Reviews: {{ details[0]['total_reviews'] }}</h4>
             <h6><i class="fa fa-map-marker purp"></i> {{ details[0]['address'] }} </h6>
             <h6><i class="fa fa-phone purp"></i> {{ details[0]['phone'] }}</h6>
-
             <ul class="nav nav-pills nav-stacked">
-                <li ng-class="{active : activeMenu === 'Overview'}"><a href="" ng-click="activeMenu = 'Home'; showDiv(1)">Overview</a></li>
+                <li ng-class="{active : activeMenu === 'Overview'}"><a href="" ng-click="activeMenu = 'Overview'; showDiv(1)">Overview</a></li>
                 <li ng-class="{active : activeMenu === 'Review Details'}"><a href="" ng-click="activeMenu = 'Review Details'; showDiv(2)">Review Details</a></li>
                 <li ng-class="{active : activeMenu === 'Leave Review'}"><a href="" ng-click="activeMenu = 'Leave Review'; showDiv(3)">Leave Review</a></li>
                 <li ng-class="{active : activeMenu === 'My Places'}"><a href="" ng-click="activeMenu = 'My Places'; showDiv(4)">Add To My Places</a></li>

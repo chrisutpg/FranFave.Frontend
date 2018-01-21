@@ -1,45 +1,51 @@
-<h4>Review Details</h4>
-<li>{{ details[0]['address'] }}</li>
-<li>{{ details[0]['phone'] }}</li>
+<div ng-hide="details[0]['total_reviews'] == null">
+    <div ng-repeat="val in details[0]['reviews'] | limitTo: lmt">
+        <div class="review-box">
+            <div class="row">
+                <div class="col-md-5">
+                    <h6><i style="color: purple" class="fa fa-user"></i> Reviewed By: <span ng-controller="PubProfile"><a href="" ng-click="ProfileFromReview(val['reviewer_id'])">{{ val['first_name'] }}</a></span></h6>
+                    <h6><i style="color: purple" class="fa fa-pie-chart"></i> Overall Score: <span style="font-weight: bold">{{ val['avg_score'] }}</span></h6>
+                </div>
+                <div class="col-md-5">
+                    <h6><i style="color: purple" class="fa fa-calendar-check-o"></i> Reviewed On: {{ val['review_date']}}</h6>
+                    <h6><i style="color: purple" class="fa fa-calendar"></i> Visited On: {{ val['visited_date']}}</h6>
+                </div>
+                <div class="col-md-2">
 
-<div ng-repeat="val in details[0]['reviews'] | limitTo: lmt">
-    <div class="review-box">
-        <div class="row">
-            <div class="col-md-5">
-                <h6><i style="color: purple" class="fa fa-user"></i> Reviewed By: <span ng-controller="PubProfile"><a href="" ng-click="ProfileFromReview(val['reviewer_id'])">{{ val['first_name'] }}</a></span></h6>
-                <h6><i style="color: purple" class="fa fa-pie-chart"></i> Overall Score: <span style="font-weight: bold">{{ val['avg_score'] }}</span></h6>
+                </div>
             </div>
-            <div class="col-md-5">
-                <h6><i style="color: purple" class="fa fa-calendar-check-o"></i> Reviewed On: {{ val['review_date']}}</h6>
-                <h6><i style="color: purple" class="fa fa-calendar"></i> Visited On: {{ val['visited_date']}}</h6>
+            <hr class="style9">
+            <div class="row">
+                <div class="col-md-12" ng-controller="ReviewDetails">
+                    <li>{{ val['first_name'] }} said this location was <span ng-class="dynamicClass">{{ q1(val['cat1_score']) }}</span> to others they visited.</li>
+                    <li>{{ val['first_name'] }} said they were <span ng-class="dynamicClass">{{ q2(val['cat2_score']) }}</span><span ng-show="val['cat2_score'] == 3"> they would</span><span ng-hide="val['cat2_score'] == 3"> to</span> visit this location again.</li>
+                    <li>{{ val['first_name'] }} said everything tasted <span ng-class="dynamicClass">{{ q3(val['cat3_score']) }}</span> compared to what they expected.</li>
+                    <li>{{ val['first_name'] }} said of the things they ordered<span ng-show="val['cat4_score'] == 3"> they</span> <span ng-class="dynamicClass">{{ q4(val['cat4_score']) }}</span><span ng-show="val['cat4_score'] == 2">were unavailable.</span>
+                        <span ng-show="val['cat4_score'] == 3">what </span><span ng-hide="val['cat4_score'] == 2">was available.</span></li>
+                    <li>{{ val['first_name'] }} said the prices were <span ng-class="dynamicClass">{{ q5(val['cat5_score']) }} </span><span ng-show="val['cat5_score'] == 3">as</span><span ng-hide="val['cat5_score'] == 3">than</span> expected.</li>
+                </div>
             </div>
-            <div class="col-md-2">
-
-            </div>
-        </div>
-        <hr class="style9">
-        <div class="row">
-            <div class="col-md-12" ng-controller="ReviewDetails">
-                <li>{{ val['first_name'] }} said this location was <span ng-class="dynamicClass">{{ q1(val['cat1_score']) }}</span> to others they visited.</li>
-                <li>{{ val['first_name'] }} said they were <span ng-class="dynamicClass">{{ q2(val['cat2_score']) }}</span><span ng-show="val['cat2_score'] == 3"> they would</span><span ng-hide="val['cat2_score'] == 3"> to</span> visit this location again.</li>
-                <li>{{ val['first_name'] }} said everything tasted <span ng-class="dynamicClass">{{ q3(val['cat3_score']) }}</span> compared to what they expected.</li>
-                <li>{{ val['first_name'] }} said of the things they ordered<span ng-show="val['cat4_score'] == 3"> they</span> <span ng-class="dynamicClass">{{ q4(val['cat4_score']) }}</span><span ng-show="val['cat4_score'] == 2">were unavailable.</span>
-                    <span ng-show="val['cat4_score'] == 3">what </span><span ng-hide="val['cat4_score'] == 2">was available.</span></li>
-                <li>{{ val['first_name'] }} said the prices were <span ng-class="dynamicClass">{{ q5(val['cat5_score']) }} </span><span ng-show="val['cat5_score'] == 3">as</span><span ng-hide="val['cat5_score'] == 3">than</span> expected.</li>
-            </div>
-        </div>
-        <hr class="style9">
-        <div class="row">
-            <div class="col-md-12">
-                Comments: {{ val['comments'] }}
+            <hr class="style9">
+            <div class="row">
+                <div class="col-md-12">
+                    Comments: {{ val['comments'] }}
+                </div>
             </div>
         </div>
     </div>
+    <button class="btn btn-lg btn-primary" ng-click="lmt=lmt+1">More Reviews..</button>
 </div>
-<button class="btn btn-lg btn-primary" ng-click="lmt=lmt+1">More Reviews..</button>
 
-<li>{{ details[0]['review_stats']['cat1_avg'] }}</li>
-<li>{{ details[0]['review_stats']['cat2_avg'] }}</li>
-<li>{{ details[0]['review_stats']['cat3_avg'] }}</li>
-<li>{{ details[0]['review_stats']['cat4_avg'] }}</li>
-<li>{{ details[0]['review_stats']['cat5_avg'] }}</li>
+<div ng-show="details[0]['total_reviews'] == null" class="review-box">
+    <div class="row">
+        <div class="col-md-8">
+            <h3><i class="fa fa-frown-o purp"></i> Uh Oh!</h3>
+            <p>It looks like we don't have any reviews yet for this place so we can't give you many details. We would
+            love it if you left the first review so you can help others when they are trying to find more information!</p>
+            <div ng-controller="SubMenuCtrl">
+                <button href="" ng-click="activeMenu = 'Leave Review'; showDiv(3)" class="btn btn-md btn-primary">Leave A Review!</button>
+            </div>
+
+        </div>
+    </div>
+</div>

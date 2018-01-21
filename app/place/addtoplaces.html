@@ -1,8 +1,62 @@
 <div class="review-box">
-    <button class="btn btn-primary btn-lg"><i class="fa fa-street-view"></i> Add To My Places!</button>
+
+    <!-- Add Button -->
+    <div ng-hide="details[0]['total_reviews'] == null" ng-controller="IsAuth">
+        <div ng-controller="AddToPlaces">
+
+            <!-- Not Logged In -->
+            <button ng-controller="UserUpdate" ng-hide="token[0] != null || user_info != null" data-toggle="modal" data-target="#login" class="btn btn-primary btn-lg">Log In To Add!</button>
+
+            <!-- Logged In -->
+            <button ng-hide="success" ng-controller="UserUpdate" ng-show="token[0] != null || user_info != null" ng-click="addToMyPlaces(details[0]['id'])" class="btn btn-primary btn-lg"><i class="fa fa-street-view"></i> Add To My Places!</button>
+
+            <div class="alert alert-success" ng-show="success">
+                <div class="container-fluid">
+                    <div class="alert-icon">
+                        <i class="material-icons">check</i>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                    </button>
+                    <b>Success Alert:</b> {{ success }}
+                </div>
+            </div>
+
+            <div class="alert alert-danger" ng-show="error">
+                <div class="container-fluid">
+                    <div class="alert-icon">
+                        <i class="material-icons">error_outline</i>
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                    </button>
+                    <b>Error Alert:</b> {{ error }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Need Reviews First -->
+    <div ng-show="details[0]['total_reviews'] == null" class="row">
+        <div class="col-md-12">
+            <h3>How Can I Add a Place?</h3>
+            <p>In order to add a place to 'your places' two things need to happen. First you need to be logged in, and
+            second the place you are trying to add needs at least one review. If you are reading this message that
+            means there are no reviews yet for this place. You can be the first one to leave a review! </p>
+            <div ng-controller="SubMenuCtrl">
+                <button href="" ng-click="activeMenu = 'Leave Review'; showDiv(3)" class="btn btn-md btn-primary">Leave A Review!</button>
+            </div>
+            <div ng-controller="IsAuth">
+                <button ng-controller="UserUpdate" ng-hide="token[0] != null || user_info != null" data-toggle="modal" data-target="#login" class="btn btn-md btn-primary">Login!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Describe -->
     <div class="row">
         <div class="col-md-12">
-            <h3>Why Should You Add A Place?</h3>
+            <h3>Why Should You Add a Place?</h3>
             <p>Adding a place to 'My Places' will send you updates if we notice any changes in normal reviews. This
             can be helpful because if one of your places has a drastic change in reviews you may want to visit another
             location.</p>
@@ -10,4 +64,5 @@
             <li>Other Neat Stuff</li>
         </div>
     </div>
+
 </div>

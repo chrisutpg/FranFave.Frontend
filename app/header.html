@@ -7,7 +7,7 @@
                     <div class="logo-2-header"><center>Not All <span class="logo-1">Franchises</span> Are Created Equally</center></div>
                 </div>
                 <div class="col-md-12">
-                    <div class="header-form" style="margin-bottom: 10%">
+                    <div class="header-form" style="margin-bottom: 10%; padding-right: 30px">
                         <div class="row">
                             <form ng-controller="GetQuery" ng-submit="submitForm()">
                                 <div class="col-sm-6">
@@ -16,14 +16,32 @@
                                         <input ng-model="form.keyword" type="text" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">City, State or Zip..</label>
-                                        <input ng-model="form.location" type="text" class="form-control">
+                                <div ng-controller="updateGeo">
+                                    <div ng-hide="update[0] || update[0] == 0" class="col-sm-4">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">City, State or Zip..</label>
+                                            <input id='header-loc' ng-model="form.location" type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div ng-show="update[0]" class="col-sm-4">
+                                        <div class="form-group label-floating has-success">
+                                            <label class="control-label">We Found You!</label>
+                                            <input type="text" ng-model="form.location" disabled placeholder="Found Your Location!" class="form-control" />
+                                            <span class="form-control-feedback">
+			                                <i class="material-icons">done</i>
+		                                    </span>
+                                        </div>
+                                    </div>
+                                    <div ng-show="update[0] == 0" class="col-sm-4">
+                                        <div class="form-group label-floating has-error">
+                                            <label class="control-label">Uh Oh.. We couldn't find your location!</label>
+                                            <input ng-model="form.location" placeholder="Please enter location manually!" class="form-control" />
+                                            <span class="material-icons form-control-feedback">clear</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <button type="submit" ng-click="Submit" href="#!view1" class="btn btn-primary btn-lg"><i class="fa fa-search"></i> Lets Go!</button>
+                                    <button type="submit" id="searchMain" ng-click="Submit" href="#!view1" class="btn btn-primary btn-lg"><i class="fa fa-search"></i> Lets Go!</button>
                                 </div>
                             </form>
                         </div>
@@ -35,3 +53,51 @@
 </div>
 
 <!-- End Header -->
+
+<!-- Find Me -->
+<div id="geoPop" class="hide">
+    <div id="geo" class="popover-body" ng-controller="geoCtrl">
+        <div ng-controller="updateGeo">
+            <button ng-show="update[0]" id="findme" style="margin: -10px" class="btn btn-success btn-sm" ng-click="getGeo()"><span class="purp"><i class="fa fa-street-view"></i> FIND ME!</span></button>
+            <button ng-hide="update[0]" id="findme" style="margin: -10px" class="btn btn-simple btn-sm" ng-click="getGeo()"><span class="purp"><i class="fa fa-street-view"></i> FIND ME!</span></button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var content = $('[id*="geo"]');
+
+    $(document).on('click', '#header-loc', function() {
+
+        $('#header-loc').popover('show')
+
+    })
+
+    $('#header-loc').popover({
+        html: true,
+        trigger: 'manual',
+        container: 'body',
+        placement: 'top',
+        content: function () {
+            return content.html();
+        },
+    });
+
+    $(document).on('click', '#findme', function()
+    {
+
+        angular.element('#geo').scope().getGeo();
+        angular.element('#geo').scope().$apply();
+        $('#header-loc').popover('hide')
+
+
+    });
+
+    $('#searchMain').on('click', function() {
+
+        $('#header-loc').popover('hide')
+
+    })
+
+
+</script>

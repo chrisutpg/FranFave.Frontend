@@ -1,11 +1,11 @@
-<div class="row">
+<div class="row" ng-hide="details[0]['total_reviews'] == null">
     <div class="col-sm-12">
         <div class="review-box" ng-controller="ReviewOverview">
             <h4 style="text-align: center">Based on our algorithm this franchise <span ng-class="dynamicClass">{{ overall(details[0]['review_avg']) }}</span> to your expectations.</h4>
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" ng-hide="details[0]['total_reviews'] == null">
     <div class="col-sm-2">
         <div class="review-box" style="text-align: center;">
             <h4>Overall Rating</h4>
@@ -58,6 +58,20 @@
             <h4>
                 <i ng-repeat="x in starCtrl(details[0]['review_stats']['cat5_avg'])"  style="color: purple" class="fa fa-star"></i><i ng-hide="halfStar(details[0]['review_stats']['cat5_avg'])" class="fa fa-star-half" style="color: purple"></i>
             </h4>
+        </div>
+    </div>
+</div>
+
+<div ng-show="details[0]['total_reviews'] == null" class="review-box">
+    <div class="row">
+        <div class="col-md-8">
+            <h3><i class="fa fa-frown-o purp"></i> Uh Oh!</h3>
+            <p>It looks like we don't have any reviews yet for this place so we can't give you many details. We would
+                love it if you left the first review so you can help others when they are trying to find more information!</p>
+            <div ng-controller="SubMenuCtrl">
+                <button href="" ng-click="activeMenu = 'Leave Review'; showDiv(3)" class="btn btn-md btn-primary">Leave A Review!</button>
+            </div>
+
         </div>
     </div>
 </div>

@@ -52,7 +52,36 @@ angular.module('myApp.place', ['ngRoute'])
 
     }
 
+
 }])
+
+.controller('AddToPlaces', function($scope, $http) {
+
+    $scope.success = null;
+    $scope.error = null;
+
+    $scope.addToMyPlaces = function(id) {
+
+        $http({
+
+            url: api_url + '/profiles/add_my_place',
+            headers: {'X-API-KEY': localStorage.token},
+            method: 'POST',
+            data: {'id': id}
+
+        }).then(function(response){
+
+            $scope.success = 'We added this place to your places!'
+
+        }).catch(function(response){
+
+            $scope.error = 'Uh Oh.. Something went wrong. Try again later.'
+
+        })
+
+    }
+
+})
 
 .controller('ReviewForm', ['Id', '$scope', '$http', '$window', '$timeout', '$location', function(Id, $scope, $http, $window, $timeout, $location){
 

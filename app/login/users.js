@@ -158,10 +158,6 @@ angular.module('myApp.users', [])
 
                     $scope.user_info = null;
 
-                }).then(function() {
-
-                    // Do something else
-
                 })
 
             }).catch(function(response) {

@@ -1,5 +1,43 @@
-<p>This is the partial for view 1. - Test</p>
-<div>Test</div>
-<div ng-controller="ShowGid">
-    1 - {{ gid }}
+<div class="container">
+    <div class="row row-flex">
+
+        <!-- Recent Reviews -->
+        <div ng-controller="recentReviews" ng-init="recent(6)">
+            <!-- The Review -->
+            <div class="container"><center><span class="logo-2-header purp">Recent</span><span class="logo-1 purp">Reviews</span></center>
+            <div class="container">
+
+                <div class="row row-flex row-flex-wrap">
+                    <div class="col-md-4" ng-repeat="val in reviews">
+                        <div class="flex-col">
+                            <div class="recent-box flex-grow">
+
+                                <div class="ribbon"><span>RECENT</span></div>
+
+                                <div style="margin-left: 50px">
+                                    <h4><i class="fa fa-info purp"></i> {{ val['place_name'] }}</h4>
+                                </div>
+                                <h6><i class="fa fa-map-marker purp"></i> {{ val['address'] }}</h6>
+                                <hr class="style9">
+                                <h3>Overall Score: {{ val['avg_score'] }}</h3>
+                                <li>Similarities Score: {{ val['cat1_score'] }}</li>
+                                <li>Revisit Score: {{ val['cat2_score'] }}</li>
+                                <li>As Expected Score: {{ val['cat3_score'] }}</li>
+                                <li>Availability Score: {{ val['cat4_score'] }}</li>
+                                <li>Pricing Score: {{ val['cat5_score'] }}</li>
+                                <hr class="style9">
+                                {{ val['comments'] }}
+                                <div ng-controller="Gid">
+                                    <button ng-click="getGid(val['place_id'])" class="btn btn-md btn-primary">View Reviews</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--/row-->
+
+            </div><!--/container-->
+
+    </div>
 </div>

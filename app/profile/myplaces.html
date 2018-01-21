@@ -1,0 +1,47 @@
+
+<div class="row row-flex row-flex-wrap">
+    <div class="col-md-4" ng-repeat="val in profile['my_places']">
+        <div class="flex-col">
+            <div class="recent-box flex-grow">
+
+                <div class="ribbon"><span>MY PLACE</span></div>
+
+                <div style="margin-left: 50px">
+                    <h4><i class="fa fa-info purp"></i> {{ val['place_name'] }}</h4>
+                </div>
+                <h6><i class="fa fa-map-marker purp"></i> {{ val['address'] }}</h6>
+                <hr class="style9">
+                <h3>Overall Score: {{ val['avg_score'] }}</h3>
+                <li>Similarities Score: {{ val['cat1_score'] }}</li>
+                <li>Revisit Score: {{ val['cat2_score'] }}</li>
+                <li>As Expected Score: {{ val['cat3_score'] }}</li>
+                <li>Availability Score: {{ val['cat4_score'] }}</li>
+                <li>Pricing Score: {{ val['cat5_score'] }}</li>
+                <hr class="style9">
+                {{ val['comments'] }}
+                <div ng-controller="Gid">
+                    <button ng-click="getGid(val['place_id'])" class="btn btn-md btn-primary">View Place</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-hide="profile['my_places']">
+
+    <div class="review-box">
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3><i class="fa fa-frown-o"></i> Uh Oh..</h3>
+                <p>It doesn't look like you've added any places yet! Try searching some places and you can add one
+                from there!</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

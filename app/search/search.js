@@ -22,16 +22,108 @@ angular.module('myApp.search', ['ngRoute'])
         clearResult: clearResult
 
     }
-})    
+})
 
-.controller('GetQuery', ['Results', '$scope', '$http', '$location', '$route', '$templateCache', '$timeout', function (Results, $scope, $http, $location, $route, $templateCache, $timeout){
+.service('geoSrv', function() {
 
-    $scope.search_results = 'Test';
+    var myResult = [];
+
+    var addResult = function (newObj) {
+        myResult.push(newObj);
+    }
+
+    var getResult = function(){
+        return myResult;
+    }
+    var clearResult = function(){
+        myResult.length = 0;
+    }
+    return{
+        addResult: addResult,
+        getResult: getResult,
+        clearResult: clearResult
+
+    }
+
+})
+
+.service('returnGeo', function() {
+
+    var myResult = [];
+
+    var addResult = function (newObj) {
+        myResult.push(newObj);
+        console.log(myResult)
+    }
+
+    var getResult = function(){
+        if(myResult.length == 0){
+            var noGeo = {"longitude": null, "latitude": null};
+            addResult(noGeo)
+        }
+        return myResult;
+    }
+    var clearResult = function(){
+        myResult.length = 0;
+    }
+    return{
+        addResult: addResult,
+        getResult: getResult,
+        clearResult: clearResult
+
+    }
+
+})
+
+.controller('updateGeo', ['$scope', 'geoSrv', function($scope, geoSrv) {
+
+    $scope.update = geoSrv.getResult();
+
+}])
+
+.controller('geoCtrl', ['$scope', 'geoSrv', 'returnGeo', function($scope, geoSrv, returnGeo){
+
+    $scope.getGeo = function() {
+
+        $scope.success = null;
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                $scope.$apply(function () {
+                    $scope.position = position;
+                    $scope.success = true;
+                    geoSrv.addResult($scope.success);
+                    returnGeo.addResult($scope.position.coords)
+                });
+            }, function (error) {
+                $scope.$apply(function () {
+                    $scope.success = 0;
+                    geoSrv.addResult($scope.success);
+                });
+            });
+
+        }
+
+    }
+}])
+
+
+
+.controller('GetQuery', ['Results', '$scope', '$http', '$location', '$route', '$templateCache', '$timeout', 'returnGeo', 'geoSrv',
+    function (Results, $scope, $http, $location, $route, $templateCache, $timeout, returnGeo, geoSrv){
+
     $scope.form = {
         keyword: "",
-        location: ""
+        location: "",
+        long: "",
+        lat: ""
     };
     $scope.submitForm = function () {
+
+        $scope.form.long = returnGeo.getResult()[0]['longitude'];
+        $scope.form.lat = returnGeo.getResult()[0]['latitude'];
+        returnGeo.clearResult();
+        geoSrv.clearResult();
 
         $timeout(function(){
             var el = document.getElementById('closeSearch');
@@ -47,7 +139,6 @@ angular.module('myApp.search', ['ngRoute'])
         }).then(function(response) {
 
             $scope.clear = Results.getResult();
-            console.log($scope.clear);
             if($scope.clear.length > 0){
                 $templateCache.remove('/search');
                 Results.clearResult();
@@ -63,7 +154,7 @@ angular.module('myApp.search', ['ngRoute'])
 
         }).catch(function(response){
 
-            //
+            console.log($scope.form)
 
         })
 
